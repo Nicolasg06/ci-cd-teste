@@ -1,5 +1,4 @@
-  GNU nano 8.3              .github/workflows/teste.yml               Modified
-name: CI - Testes Automáticos
+name: CI - Testes Automaticos
 
 on:
   push:
