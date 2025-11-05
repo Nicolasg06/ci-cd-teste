@@ -1,26 +1,32 @@
-name: Teste CI
+  GNU nano 8.3              .github/workflows/teste.yml               Modified
+name: CI - Testes Automáticos
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - name: Clonar repositório
+        uses: actions/checkout@v3
 
       - name: Configurar Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
-
-      - name: Executar script
-        run: python main.py
+          python-version: '3.10'
 
       - name: Instalar dependências
-        run: pip install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+
+      - name: Executar main.py
+        run: python main.py
 
       - name: Executar testes
-        run: pytest -v 
+        run: pytest -v
